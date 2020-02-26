@@ -37,10 +37,18 @@
   },
   "homepage": "https://github.com/Marcisbee/letype#readme",
   "devDependencies": {
+    "butternut": "^0.4.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
+    "google-closure-compiler-js": "^20180204.0.0",
     "jest": "^25.1.0",
+    "rollup": "^1.31.1",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "typescript": "^3.8.2"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
