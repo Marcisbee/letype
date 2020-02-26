@@ -1,0 +1,46 @@
+{
+  "name": "letype",
+  "version": "1.0.0",
+  "description": "Type checker for any data structures",
+  "main": "dist/letype.js",
+  "module": "dist/letype.js",
+  "jsnext:main": "dist/letype.es.js",
+  "scripts": {
+    "build": "npm run roll && npm run min",
+    "roll": "npm run roll-es && npm run roll-js",
+    "roll-es": "rollup -c -n Letype -f es -i src/index.js -o dist/letype.es.js -m",
+    "roll-js": "rollup -c -n Letype -f umd -i src/index.js -o dist/letype.js -m",
+    "min": "npm run min-es && npm run min-js",
+    "min-js": "google-closure-compiler-js dist/letype.js > dist/letype.min.js",
+    "min-es": "squash dist/letype.es.js -o dist/letype.es.min.js",
+    "test:watch": "jest --watch",
+    "test": "jest",
+    "test:ci": "npm run test -- --ci",
+    "ci": "npm run test:ci  && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcisbee/letype.git"
+  },
+  "keywords": [
+    "type check",
+    "type checker",
+    "type",
+    "types",
+    "checker",
+    "validator"
+  ],
+  "author": "Marcis Bergmanis <marcisbergmanis@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Marcisbee/letype/issues"
+  },
+  "homepage": "https://github.com/Marcisbee/letype#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0",
+    "typescript": "^3.8.2"
+  }
+}
