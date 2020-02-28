@@ -3,7 +3,7 @@ import typeCheck from './typeCheck';
 /**
  * @param {any} value
  * @param {any[]} typeList
- * @returns {any} value
+ * @returns {boolean}
  */
 export default function assert(value, ...typeList) {
   if (typeList && typeList.length === 1) {
@@ -14,10 +14,11 @@ export default function assert(value, ...typeList) {
   if (typeList && typeList.length > 1) {
     let valid = false;
     typeList.forEach((type) => !valid && (valid = typeCheck(value, type, [], true)));
+
     if (!valid) {
-      console.error(`Type error: \`${value}\` is not any of types: ${typeList.map(t => `\`${t.name}\``).join(', ')}`);
+      throw new TypeError(`\`${value}\` is not any of types: ${typeList.map(t => `\`${t.name}\``).join(', ')}`);
     }
   }
 
-  return value;
+  return true;
 }

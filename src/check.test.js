@@ -3,6 +3,9 @@ import assert from './assert';
 
 jest.mock('./assert.js');
 
+/** @type {jest.Mock<boolean>} */
+const mockedAssert = assert;
+
 describe('check', () => {
   afterEach(() => {
     jest.resetAllMocks();
@@ -36,12 +39,12 @@ describe('check', () => {
 
     check('value', ...types);
 
-    expect(assert).toHaveBeenCalledTimes(1);
-    expect(assert).toHaveBeenCalledWith('value', ...types);
+    expect(mockedAssert).toHaveBeenCalledTimes(1);
+    expect(mockedAssert).toHaveBeenCalledWith('value', ...types);
   });
 
   test('should return `false` if assert function throws', () => {
-    assert.mockImplementation(() => {
+    mockedAssert.mockImplementation(() => {
       throw new Error();
     });
     const output = check('value');
