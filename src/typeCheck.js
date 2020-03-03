@@ -2,13 +2,13 @@ import CustomType from './types/Custom';
 
 /**
  * @param {any} value
- * @param {any} type
+ * @param {Function|RegExp|Array|Record<any, any>} type
  * @param {string[]} path
  * @param {boolean} silent
  * @returns {boolean}
  */
 export default function typeCheck(value, type, path = [], silent = false) {
-  if (type && type.prototype instanceof CustomType) {
+  if (typeof type === 'function' && type.constructor instanceof CustomType) {
     const { parse } = type();
     if (typeof parse === 'function') return parse(value);
   }
@@ -17,7 +17,13 @@ export default function typeCheck(value, type, path = [], silent = false) {
   /** @type {string} */
   const typed = typeof retype;
 
-  if (type && type.constructor === RegExp) {
+  const constructorsMatch = value !== undefined && value !== null && value.constructor === type;
+
+  if (type === Date) {
+    return constructorsMatch;
+  }
+
+  if (type && type.constructor === RegExp && retype instanceof RegExp) {
     /** @type {boolean} */
     const typeChecked = retype.test(value);
     if (!typeChecked && !silent) {
@@ -26,7 +32,11 @@ export default function typeCheck(value, type, path = [], silent = false) {
     return typeChecked;
   }
 
-  if (value && value.constructor === type) {
+  if (type === RegExp) {
+    return constructorsMatch;
+  }
+
+  if (constructorsMatch) {
     return true;
   }
 
@@ -34,11 +44,11 @@ export default function typeCheck(value, type, path = [], silent = false) {
     let valid = true;
 
     // Uncalled Array function
-    if (type && type.name === 'Array' && type.constructor instanceof Function) {
+    if (type && type instanceof Function && type.name === 'Array' && type.constructor instanceof Function) {
       return (value && value.constructor) === (type && type.constructor);
     }
 
-    if (type.length === 1) {
+    if (type instanceof Array && type.length === 1) {
       if (!(value && value.length > -1)) {
         return false;
       }
@@ -67,9 +77,6 @@ export default function typeCheck(value, type, path = [], silent = false) {
 
     return valid;
   }
-
-  // console.log({ value, type, length: type.length, val: type.value, typed });
-  // console.log((value && value.constructor) === (type && type.constructor));
 
   // eslint-disable-next-line valid-typeof
   const checked = typeof value === typed;

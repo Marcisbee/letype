@@ -1,10 +1,8 @@
 /* eslint-disable no-new-func */
 import typeCheck from './typeCheck';
 
+// eslint-disable-next-line no-console
 console.error = jest.fn();
-
-// @TODO: Fix issues
-// @TODO: Test custom type
 
 describe('typeCheck', () => {
   afterEach(() => {
@@ -178,11 +176,16 @@ describe('typeCheck', () => {
     test.each([
       () => {},
       new Function(''),
+      String,
+      Number,
+      Boolean,
+      Date,
+      RegExp,
+      Function,
     ])('should return true if value is %s', (value) => {
       expect(typeCheck(value, Function)).toBe(true);
     });
 
-    // @TODO: do fixes
     test.each([
       'value',
       '',
@@ -192,21 +195,14 @@ describe('typeCheck', () => {
       null,
       false,
       undefined,
-      // [],
+      [],
       {},
-      String,
-      Number,
-      Boolean,
-      Date,
-      RegExp,
-      Function,
       String(),
       Number(),
       new Date(),
       new RegExp(/A/),
-      () => {},
     ])('should return false if value is %s', (value) => {
-      expect(typeCheck(value, Array)).toBe(false);
+      expect(typeCheck(value, Function)).toBe(false);
     });
   });
 
@@ -219,10 +215,9 @@ describe('typeCheck', () => {
       expect(typeCheck(value, Date)).toBe(true);
     });
 
-    // @TODO: do fixes
     test.each([
-      // 'value',
-      // '',
+      'value',
+      '',
       0,
       1,
       NaN,
@@ -237,7 +232,7 @@ describe('typeCheck', () => {
       Date,
       RegExp,
       Function,
-      // String(),
+      String(),
       Number(),
       Boolean(),
       new RegExp(/A/),
@@ -256,10 +251,9 @@ describe('typeCheck', () => {
       expect(typeCheck(value, RegExp)).toBe(true);
     });
 
-    // @TODO: do fixes
     test.each([
-      // 'value',
-      // '',
+      'value',
+      '',
       0,
       1,
       NaN,
@@ -274,14 +268,14 @@ describe('typeCheck', () => {
       Date,
       RegExp,
       Function,
-      // String(),
+      String(),
       Number(),
       Boolean(),
       new Function(''),
-      // new Date(),
+      new Date(),
       () => {},
     ])('should return false if value is %s', (value) => {
-      expect(typeCheck(value, Date)).toBe(false);
+      expect(typeCheck(value, RegExp)).toBe(false);
     });
   });
 
@@ -289,13 +283,14 @@ describe('typeCheck', () => {
     test.each([
       'A',
       'AAA',
+      /A/,
+      new RegExp(/A/),
     ])('should return true if value is %s', (value) => {
       expect(typeCheck(value, /A/)).toBe(true);
     });
 
-    // @TODO: do fixes
     test.each([
-      // /A/,
+      /b/,
       'a',
       'value',
       '',
@@ -316,9 +311,9 @@ describe('typeCheck', () => {
       String(),
       Number(),
       Boolean(),
-      // new RegExp(/A/),
       new Function(''),
       new Date(),
+      new RegExp(/b/),
       () => {},
     ])('should return false if value is %s', (value) => {
       expect(typeCheck(value, /A/)).toBe(false);
