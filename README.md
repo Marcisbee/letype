@@ -2,7 +2,7 @@
 
 > Type checker that uses native data types.
 
-Letype is simple and small ([1kB MINIFIED + GZIPPED](https://bundlephobia.com/result?p=letype)) type checker library that can validate any JS data types and structures as well as any custom ones.
+Letype is simple and small ([1kB minified + gzipped](https://bundlephobia.com/result?p=letype)) type checker library that can validate any JS data types and structures as well as any custom ones.
 
 ## Features
 - Uses native JS data types.
