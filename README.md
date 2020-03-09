@@ -79,8 +79,8 @@ const {
 ```
 
 ## List of available functions
-- [`check()`](check) — TODO.
-- [`assert()`](assert) — TODO.
+- [`check()`](check)
+- [`assert()`](assert)
 
 ## Usage of functions
 
@@ -105,25 +105,25 @@ assert(123, String); // -> Throw
 Types are meant to be used as data types that does custom validation against given value inside `assert()` or `check()` functions.
 
 #### Types from `letype` library:
-- [`types.Any`](#typesany) — TODO.
-- [`types.Or(...types)`](#typesor) — TODO.
-- [`types.Undefined`](#typesundefined) — TODO.
-- [`types.Custom`](#typescustom) — TODO.
+- [`types.Any`](#typesany)
+- [`types.Or(...types)`](#typesor)
+- [`types.Undefined`](#typesundefined)
+- [`types.Custom`](#typescustom)
 
 #### Types from JavaScript language:
-- [`String`](#string) — TODO.
-- [`Number`](#number) — TODO.
-- [`Boolean`](#boolean) — TODO.
-- [`Array`](#array) — TODO.
-- [`Function`](#function) — TODO.
-- [`Date`](#date) — TODO.
-- [`RegExp`](#regexp) — TODO.
+- [`String`](#string)
+- [`Number`](#number)
+- [`Boolean`](#boolean)
+- [`Array`](#array)
+- [`Function`](#function)
+- [`Date`](#date)
+- [`RegExp`](#regexp)
 
 Types can also be created in structures:
 
-- [Typed Arrays](#typed-arrays) — TODO.
-- [Typed Objects](#typed-objects) — TODO.
-- [Regular Expressions](#regular-expressions) — TODO.
+- [Typed Arrays](#typed-arrays)
+- [Typed Objects](#typed-objects)
+- [Regular Expressions](#regular-expressions)
 
 ## Usage of types
 
