@@ -1,6 +1,6 @@
 {
   "name": "letype",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Type checker for any data structures",
   "main": "dist/letype.js",
   "module": "dist/letype.js",
