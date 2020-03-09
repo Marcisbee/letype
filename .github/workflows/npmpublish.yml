@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
+      - run: npm build
       - run: npm test
 
   publish-npm:
@@ -25,6 +26,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - run: npm build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -40,6 +42,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@marcisbee'
       - run: npm ci
+      - run: npm build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GH_TOKEN}}
