@@ -1,5 +1,12 @@
 /* eslint-disable no-new-func */
 import typeCheck from './typeCheck';
+import CustomType from './types/Custom';
+
+class MockAny extends CustomType {
+  parse() {
+    return true;
+  }
+}
 
 // eslint-disable-next-line no-console
 console.error = jest.fn();
@@ -11,6 +18,26 @@ describe('typeCheck', () => {
 
   test('should be callable function', () => {
     expect(typeCheck instanceof Function).toBe(true);
+  });
+
+  describe('CustomType', () => {
+    test.only('should call `parse` method on `CustomType`', () => {
+      MockAny.prototype.parse = jest.fn();
+      typeCheck('CustomValue', MockAny);
+
+      expect(MockAny.prototype.parse).toHaveBeenCalledTimes(1);
+      expect(MockAny.prototype.parse).toHaveBeenCalledWith('CustomValue');
+    });
+
+    test.only('should return output of parse method as `true`', () => {
+      MockAny.prototype.parse = jest.fn().mockImplementation(() => true);
+      expect(typeCheck('CustomValue', MockAny)).toBe(true);
+    });
+
+    test.only('should return output of parse method as `false`', () => {
+      MockAny.prototype.parse = jest.fn().mockImplementation(() => false);
+      expect(typeCheck('CustomValue', MockAny)).toBe(false);
+    });
   });
 
   describe('String', () => {

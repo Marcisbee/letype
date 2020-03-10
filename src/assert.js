@@ -7,7 +7,7 @@ import typeCheck from './typeCheck';
  */
 export default function assert(value, ...typeList) {
   if (typeList && typeList.length === 1) {
-    if (!typeCheck(value, typeList[0])) {
+    if (!typeCheck(value, typeList[0], [], true)) {
       throw new TypeError('Type checker found some type mismatches!');
     }
   } else

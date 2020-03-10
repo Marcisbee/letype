@@ -25,7 +25,7 @@ describe('assert', () => {
     assert('value', String);
 
     expect(mockedTypeCheck).toHaveBeenCalledTimes(1);
-    expect(mockedTypeCheck).toHaveBeenCalledWith('value', String);
+    expect(mockedTypeCheck).toHaveBeenCalledWith('value', String, [], true);
   });
 
   test('should call `typeCheck()` once if multiple types are present, first valid', () => {

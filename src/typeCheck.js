@@ -7,9 +7,11 @@ import CustomType from './types/Custom';
  * @param {boolean} silent
  * @returns {boolean}
  */
-export default function typeCheck(value, type, path = [], silent = false) {
-  if (typeof type === 'function' && type.constructor instanceof CustomType) {
-    const { parse } = type();
+export default function typeCheck(value, type, path = [], silent = true) {
+  if (typeof type === 'function' && type.prototype instanceof CustomType) {
+    // @ts-ignore
+    // eslint-disable-next-line new-cap
+    const { parse } = new type();
     if (typeof parse === 'function') return parse(value);
   }
 
