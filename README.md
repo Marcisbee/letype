@@ -1,5 +1,7 @@
 # Letype
 
+[![discord](https://dcbadge.vercel.app/api/server/a62gfaDW2e?style=flat-square)](https://discord.gg/a62gfaDW2e)
+
 > Type checker that uses native data types.
 
 Letype is simple and small ([1kB minified + gzipped](https://bundlephobia.com/result?p=letype)) type checker library that can validate any JS data types and structures as well as any custom ones.
